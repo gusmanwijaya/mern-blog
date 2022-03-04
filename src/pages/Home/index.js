@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { BlogItem, Button, Gap } from "../../components";
 import "./home.scss";
 import { useNavigate } from "react-router-dom";
-import Axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { setDataBlog } from "../../config/redux/action";
 
 const Home = () => {
   const navigate = useNavigate();
-
-  const [dataBlog, setDataBlog] = useState([]);
+  const dispatch = useDispatch();
+  const { dataBlog } = useSelector((state) => state.home);
 
   useEffect(() => {
-    Axios.get(`${process.env.REACT_APP_API_HOST}/blog/posts?perPage=2`)
-      .then((result) => setDataBlog(result.data.data))
-      .catch((error) => console.log(error));
-  }, []);
+    dispatch(setDataBlog());
+  }, [dispatch]);
 
   return (
     <div className="home-page-wrapper">
@@ -29,6 +28,7 @@ const Home = () => {
         {dataBlog.map((value, index) => (
           <BlogItem
             key={index}
+            id={value._id}
             image={`${process.env.REACT_APP_IMG_HOST}/${value?.image}`}
             title={value?.title}
             body={value?.body}

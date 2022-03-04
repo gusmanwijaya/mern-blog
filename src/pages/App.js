@@ -1,7 +1,12 @@
-import { Router } from "../config";
+import { Router, store } from "../config";
+import { Provider } from "react-redux";
 
 function App() {
-  return <Router />;
+  return (
+    <Provider store={store}>
+      <Router />
+    </Provider>
+  );
 }
 
 export default App;

@@ -3,7 +3,7 @@ import "./blogitem.scss";
 import { Button, Gap } from "../../../components";
 import { useNavigate } from "react-router-dom";
 
-const BlogItem = ({ image, title, author, body, date }) => {
+const BlogItem = ({ id, image, title, author, body, date }) => {
   const navigate = useNavigate();
   return (
     <div className="blog-item">
@@ -18,7 +18,7 @@ const BlogItem = ({ image, title, author, body, date }) => {
         <Button
           title="View Detail"
           type="button"
-          onClick={() => navigate("/detail-blog")}
+          onClick={() => navigate(`/detail-blog/${id}`)}
         />
       </div>
     </div>
