@@ -30,6 +30,7 @@ const Home = () => {
     confirmAlert({
       title: "Confirm to delete",
       message: "Are you sure want to delete this data?",
+      closeOnClickOutside: false,
       buttons: [
         {
           label: "Yes",
